@@ -1,12 +1,11 @@
 const Message = require('../models/message');
 const { Op } = require('sequelize');
 
-// Send a message
 exports.sendMessage = async (req, res) => {
     try {
         const { receiverId, content } = req.body;
         const newMessage = await Message.create({
-            senderId: req.user.id, // Assuming user ID is available in req.user
+            senderId: req.user.id, 
             receiverId,
             content
         });
@@ -16,7 +15,6 @@ exports.sendMessage = async (req, res) => {
     }
 };
 
-// Get all messages for a user
 exports.getUserMessages = async (req, res) => {
     try {
         const messages = await Message.findAll({
